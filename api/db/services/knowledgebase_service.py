@@ -157,6 +157,7 @@ class KnowledgebaseService(CommonService):
             cls.model.chunk_num,
             cls.model.parser_id,
             cls.model.embd_id,
+            cls.model.kb_type,  # 添加知识库类型字段
             User.nickname,
             User.avatar.alias('tenant_avatar'),
             cls.model.update_time
@@ -227,6 +228,7 @@ class KnowledgebaseService(CommonService):
             cls.model.parser_id,
             cls.model.parser_config,
             cls.model.pagerank,
+            cls.model.kb_type,  # 添加知识库类型字段
             cls.model.create_time,
             cls.model.update_time
             ]

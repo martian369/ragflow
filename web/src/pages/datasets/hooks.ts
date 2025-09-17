@@ -21,9 +21,10 @@ export const useSaveKnowledge = () => {
   const { navigateToDataset } = useNavigatePage();
 
   const onCreateOk = useCallback(
-    async (name: string) => {
+    async (name: string, kbType: string = 'minio') => {
       const ret = await createKnowledge({
         name,
+        kb_type: kbType, // 添加知识库类型参数，默认为'minio'
       });
 
       if (ret?.code === 0) {

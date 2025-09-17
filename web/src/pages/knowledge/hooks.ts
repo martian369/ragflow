@@ -1,7 +1,7 @@
 import { KnowledgeRouteKey } from '@/constants/knowledge';
 import { useSetModalState } from '@/hooks/common-hooks';
 import { useCreateKnowledge } from '@/hooks/knowledge-hooks';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { useNavigate } from 'umi';
 
 export const useSearchKnowledge = () => {

@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { IModalProps } from '@/interfaces/common';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -33,6 +34,7 @@ export function InputForm({ onOk }: IModalProps<any>) {
         message: t('knowledgeList.namePlaceholder'),
       })
       .trim(),
+    kbType: z.string().default('local'),
     parseType: z.number().optional(),
   });
 
@@ -40,12 +42,13 @@ export function InputForm({ onOk }: IModalProps<any>) {
     resolver: zodResolver(FormSchema),
     defaultValues: {
       name: '',
+      kbType: 'minio',
       parseType: 1,
     },
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    onOk?.(data.name);
+    onOk?.(data.name, data.kbType);
   }
   return (
     <Form {...form}>
@@ -68,6 +71,42 @@ export function InputForm({ onOk }: IModalProps<any>) {
                   placeholder={t('knowledgeList.namePlaceholder')}
                   {...field}
                 />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="kbType"
+          render={({ field }) => (
+            <FormItem className="space-y-3">
+              <FormLabel>{t('knowledgeList.knowledgeBaseType')}</FormLabel>
+              <FormControl>
+                <RadioGroup
+                  onValueChange={field.onChange}
+                  defaultValue="minio"
+                  className="flex flex-col space-y-1"
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="minio" id="minio" />
+                    <label htmlFor="minio">
+                      {t('knowledgeList.minIOKnowledgeBase')}
+                    </label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="local" id="local" />
+                    <label htmlFor="local">
+                      {t('knowledgeList.localFileKnowledgeBase')}
+                    </label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="network" id="network" />
+                    <label htmlFor="network">
+                      {t('knowledgeList.networkKnowledgeBase')}
+                    </label>
+                  </div>
+                </RadioGroup>
               </FormControl>
               <FormMessage />
             </FormItem>

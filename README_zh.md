@@ -413,3 +413,14 @@ RAGFlow 只有通过开源协作才能蓬勃发展。秉持这一精神,我们�
 <p align="center">
   <img src="https://github.com/infiniflow/ragflow/assets/7248/bccf284f-46f2-4445-9809-8f1030fb7585" width=50% height=50%>
 </p>
+
+
+
+启动依赖容器
+docker-compose -f docker/docker-compose-base.yml up -d
+
+启动后端服务
+cd /Users/zhengmeng/Desktop/TeamFile/python/ragflow && source .venv/bin/activate && export PYTHONPATH=$(pwd) && bash docker/launch_backend_service.sh
+
+启动前端服务
+nvm use v20.19.4

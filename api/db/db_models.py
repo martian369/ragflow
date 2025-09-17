@@ -644,6 +644,7 @@ class Knowledgebase(DataBaseModel):
     chunk_num = IntegerField(default=0, index=True)
     similarity_threshold = FloatField(default=0.2, index=True)
     vector_similarity_weight = FloatField(default=0.3, index=True)
+    kb_type = CharField(max_length=16, null=False, help_text="minio|local|network", default="minio", index=True)  # 知识库类型
 
     parser_id = CharField(max_length=32, null=False, help_text="default parser ID", default=ParserType.NAIVE.value, index=True)
     parser_config = JSONField(null=False, default={"pages": [[1, 1000000]]})
